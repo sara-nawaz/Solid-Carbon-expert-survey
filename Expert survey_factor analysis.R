@@ -14,6 +14,19 @@ data <- read.csv("expert survey_cleaned.csv", sep= ',', stringsAsFactors=FALSE, 
 
 
 ###FACTOR ANALYSIS
+
+needNETs <- data[c("Q2_1", "Q2_2", "Q2_3", "Q2_4")]
+scree(needNETs)
+needNETs.fa <- fa(needNETs, nfactors=2, scores=TRUE,rotate="varimax", fm="pa")
+print.psych(needNETs.fa, cut = 0.3, sort = TRUE)
+
+needNETs.a <- data.frame(data$Q2_4, data$Q2_2)
+psych::alpha(needNETs.a)
+
+needNETs.b <- data.frame(data$Q2_3, data$Q2_1)
+psych::alpha(needNETs.b)
+
+
 NETs <- data[c("DAC", "DAC_offshore", "DAC_onshore", "alkalin", "weathering", 
                "fertil", "coast_rest", "afforest", "biochar", "soil")]
 
@@ -47,6 +60,15 @@ scree(risk_l)
 risk_l.fa <- fa(risk_l, nfactors=3, scores=TRUE,rotate="varimax", fm="pa")
 print.psych(risk_l.fa, cut = 0.3, sort = TRUE)
 data$risk_l <- risk_l
+
+risk_l.a <- data.frame(data$Q8a_4, data$Q8a_3, data$Q8a_7, data$Q8a_6, data$Q8a_5)
+psych::alpha(risk_l.a)
+
+risk_l.b <- data.frame(data$Q8a_11, data$Q8a_9, data$Q8a_8, data$Q8a_10)
+psych::alpha(risk_l.b)
+
+risk_l.c <- data.frame(data$Q8a_2, data$Q8a_1)
+psych::alpha(risk_l.c)
 ##appears to be a distinciton between earthquake/seismicity; various environmental and health risks; 
 ## and broader socio-political/economic/intangible risks
 
@@ -57,17 +79,40 @@ risk_s.fa <- fa(risk_s, nfactors=2, scores=TRUE,rotate="varimax", fm="pa")
 print.psych(risk_s.fa, cut = 0.3, sort = TRUE)
 data$risk_s <- risk_s
 
+risk_s.a <- data.frame(data$Q8b_2, data$Q8b_1, data$Q8b_3, data$Q8b_4, data$Q8b_5,
+                       data$Q8b_7, data$Q8b_6)
+psych::alpha(risk_s.a)
+
+risk_s.b <- data.frame(data$Q8b_11, data$Q8b_9, data$Q8b_10, data$Q8b_8)
+psych::alpha(risk_s.b)
+
 ##there are only two factors it seems, for severity, as opposed to 3 for likelihood. groupings are:
 ## earthquakes/seismicity/explosive discrarge/leakage/health, vs., all the socioeconomic. pollution, 
 ## interestingly, is in the second group
 
 
 benefit_l <- data[c("Q9a_1", "Q9a_2", "Q9a_3", "Q9a_4", "Q9a_5", "Q9a_6", "Q9a_7",
-                    "Q9a_8", "Q9a_9", "Q9a_10", "Q9a_11")]
+                    "Q9a_8", "Q9a_9", "Q9a_10")]
 scree(benefit_l)
-benefit_l.fa <- fa(benefit_l, nfactors=3, scores=TRUE,rotate="varimax", fm="pa")
-print.psych(risk_l.fa, cut = 0.3, sort = TRUE)
+benefit_l.fa <- fa(benefit_l, nfactors=1, scores=TRUE,rotate="varimax", fm="pa")
+print.psych(benefit_l.fa, cut = 0.3, sort = TRUE)
 data$benefit_l <- benefit_l
+
+psych::alpha(benefit_l)
+
+benefit_s <- data[c("Q9b_1", "Q9b_2", "Q9b_3", "Q9b_4", "Q9b_5", "Q9b_6", "Q9b_7",
+                    "Q9b_8", "Q9b_9", "Q9b_10")]
+scree(benefit_s)
+benefit_s.fa <- fa(benefit_s, nfactors=1, scores=TRUE,rotate="varimax", fm="pa")
+print.psych(benefit_s.fa, cut = 0.3, sort = TRUE)
+data$benefit_s <- benefit_s
+
+psych::alpha(benefit_s)
+
+
+
+
+
 
 
 

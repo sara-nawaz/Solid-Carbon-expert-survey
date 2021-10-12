@@ -1,3 +1,4 @@
+rm(list = ls())
 library(tidyverse)
 
 data <- read.csv("Solid carbon_Expert survey_August 23, 2021_10.58_NUMERIC.csv", sep= ',', stringsAsFactors=FALSE, header = TRUE)
@@ -11,86 +12,86 @@ data$Q2_2 <-dplyr::na_if(data$Q2_2, 6) #remove na's
 data$Q2_3 <-dplyr::na_if(data$Q2_3, 6) #remove na's
 data$Q2_4 <-dplyr::na_if(data$Q2_4, 6) #remove na's
 
-
-data$DAC <- recode(data$Q3.1, "46" = "-2",
-       "47" = "-1",
-       "48" = "0",
-       "49" = "1",
-       "50" = "2")
+#CHANGED CODE back ...
+data$DAC <- recode(data$Q3.1, "46" = "1",
+       "47" = "2",
+       "48" = "3",
+       "49" = "4",
+       "50" = "5")
 data$DAC <-dplyr::na_if(data$DAC, 51) #remove na's
 as.numeric(data$DAC)
 
-data$DAC_offshore <- recode(data$Q3.2, "1" = "-2",
-                   "2" = "-1",
-                   "3" = "0",
-                   "4" = "1",
-                   "5" = "2")
+data$DAC_offshore <- recode(data$Q3.2, "1" = "1",
+                   "2" = "2",
+                   "3" = "3",
+                   "4" = "4",
+                   "5" = "5")
 data$DAC_offshore <-dplyr::na_if(data$DAC_offshore, 6) #remove na's
 as.numeric(data$DAC_offshore)
 
-data$DAC_onshore <- recode(data$Q3.3, "1" = "-2",
-                            "2" = "-1",
-                            "3" = "0",
-                            "4" = "1",
-                            "5" = "2")
+data$DAC_onshore <- recode(data$Q3.3, "1" = "1",
+                           "2" = "2",
+                           "3" = "3",
+                           "4" = "4",
+                           "5" = "5")
 data$DAC_onshore <-dplyr::na_if(data$DAC_onshore, 6) #remove na's
 as.numeric(data$DAC_onshore)
 
-data$alkalin <- recode(data$Q3.4, "1" = "-2",
-                            "2" = "-1",
-                            "3" = "0",
-                            "4" = "1",
-                            "5" = "2")
+data$alkalin <- recode(data$Q3.4, "1" = "1",
+                       "2" = "2",
+                       "3" = "3",
+                       "4" = "4",
+                       "5" = "5")
 data$alkalin <-dplyr::na_if(data$alkalin, 6) #remove na's
 as.numeric(data$alkalin)
 
 
-data$weathering <- recode(data$Q3.5, "1" = "-2",
-                           "2" = "-1",
-                           "3" = "0",
-                           "4" = "1",
-                           "5" = "2")
+data$weathering <- recode(data$Q3.5, "1" = "1",
+                          "2" = "2",
+                          "3" = "3",
+                          "4" = "4",
+                          "5" = "5")
 data$weathering <-dplyr::na_if(data$weathering, 6) #remove na's
 as.numeric(data$weathering)
 
-data$fertil <- recode(data$Q3.6, "1" = "-2",
-                              "2" = "-1",
-                              "3" = "0",
-                              "4" = "1",
-                              "5" = "2")
+data$fertil <- recode(data$Q3.6, "1" = "1",
+                      "2" = "2",
+                      "3" = "3",
+                      "4" = "4",
+                      "5" = "5")
 data$fertil <-dplyr::na_if(data$fertil, 6) #remove na's
 as.numeric(data$fertil)
 
-data$coast_rest <- recode(data$Q3.7, "1" = "-2",
-                      "2" = "-1",
-                      "3" = "0",
-                      "4" = "1",
-                      "5" = "2")
+data$coast_rest <- recode(data$Q3.7, "1" = "1",
+                          "2" = "2",
+                          "3" = "3",
+                          "4" = "4",
+                          "5" = "5")
 data$coast_rest <-dplyr::na_if(data$coast_rest, 6) #remove na's
 as.numeric(data$coast_rest)
 
-data$afforest <- recode(data$Q3.8, "1" = "-2",
-                          "2" = "-1",
-                          "3" = "0",
-                          "4" = "1",
-                          "5" = "2")
+data$afforest <- recode(data$Q3.8, "1" = "1",
+                        "2" = "2",
+                        "3" = "3",
+                        "4" = "4",
+                        "5" = "5")
 data$afforest <-dplyr::na_if(data$afforest, 6) #remove na's
 as.numeric(data$afforest)
 
-data$biochar <- recode(data$Q3.9, "1" = "-2",
-                        "2" = "-1",
-                        "3" = "0",
-                        "4" = "1",
-                        "5" = "2")
+data$biochar <- recode(data$Q3.9,"1" = "1",
+                       "2" = "2",
+                       "3" = "3",
+                       "4" = "4",
+                       "5" = "5")
 data$biochar <-dplyr::na_if(data$biochar, 6) #remove na's
 as.numeric(data$biochar)
 
 
-data$soil <- recode(data$Q3.10, "1" = "-2",
-                       "2" = "-1",
-                       "3" = "0",
-                       "4" = "1",
-                       "5" = "2")
+data$soil <- recode(data$Q3.10, "1" = "1",
+                    "2" = "2",
+                    "3" = "3",
+                    "4" = "4",
+                    "5" = "5")
 data$soil <-dplyr::na_if(data$soil, 6) #remove na's
 as.numeric(data$soil)
 
@@ -99,11 +100,11 @@ data$Q4 <-dplyr::na_if(data$Q4, 6) #remove na's
 data$Q4 <- recode(data$Q4, "5" = "3")
 as.numeric(data$Q4)
 
-data$Q5 <- recode(data$Q5, "1" = "-2",
-                    "2" = "-1",
-                    "3" = "0",
-                    "4" = "1",
-                    "5" = "2")
+data$Q5 <- recode(data$Q5, "1" = "1",
+                  "2" = "2",
+                  "3" = "3",
+                  "4" = "4",
+                  "5" = "5")
 data$Q5 <-dplyr::na_if(data$Q5, 6) #remove na's
 as.numeric(data$Q5)
 
